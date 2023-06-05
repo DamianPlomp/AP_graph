@@ -14,6 +14,6 @@ class Graph
         void addNode(Node* node);
         void addEdge(Edge* edge);
         Edge* getEdge(Node* from, Node* to);
-
+        std::vector<std::string> dijkstraAlgorithm(Node* start, Node* end);
         friend std::ostream& operator<<(std::ostream& os, const Graph& g);
 };

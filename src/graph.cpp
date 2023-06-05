@@ -1,5 +1,12 @@
 #include "include/graph.hpp"
+#include "include/nodegreaterthan.hpp"
+
 #include <iostream>
+#include <map>
+#include <queue>
+#include <vector>
+#include <algorithm>
+
 
 Graph::Graph(std::vector<Node*> nodes, std::vector<Edge*> edges) :
     nodes(nodes),
@@ -40,6 +47,50 @@ Edge* Graph::getEdge(Node* from, Node* to)
     return nullptr;
 } 
 
+std::vector<std::string> Graph::dijkstraAlgorithm(Node* start, Node* end)
+{
+    std::priority_queue<Node*, std::vector<Node*>, NodeGreaterThan> eval;
+    std::map<Node*, unsigned int> dist;
+    std::map<Node*, Node*> prev;
+
+    for(auto& node : nodes)
+    {
+        dist[node] = INT_MAX;
+        prev[node] = nullptr;
+    }
+
+    dist[start] = 0;
+    eval.emplace(start);
+
+    while (!eval.empty())
+    {
+        std::vector<Edge*> edges = eval.top()->getEdges();
+        eval.pop();
+
+        for(Edge* edge : edges)
+        {
+            if(dist[edge->getFrom()] + edge->getWeight() < dist[edge->getTo()])
+            {
+                dist[edge->getTo()] = dist[edge->getFrom()] + edge->getWeight();
+                prev[edge->getTo()] = edge->getFrom();
+                eval.emplace(edge->getTo()); 
+            }
+        }
+    }
+    
+    // TO DO, CHANGE
+    std::vector<std::string> res;
+    res.push_back((end->getName()));
+    while(prev[end] != nullptr)
+    {
+        res.push_back(prev[end]->getName());
+        end = prev[end];
+    }
+    std::reverse(res.begin(), res.end());
+
+    return res;
+}
+
 std::ostream& operator<<(std::ostream& os, const Graph& g)
 {
     for(Node* node : g.nodes)
@@ -49,3 +100,4 @@ std::ostream& operator<<(std::ostream& os, const Graph& g)
 
     return os;
 }
+

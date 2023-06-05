@@ -41,5 +41,14 @@ int main()
     pq.pop();
     std::cout << (*pq.top()) << std::endl; 
 
+
+    // TO DO, CHANGE
+    std::vector<std::string> fastest = g.dijkstraAlgorithm(&a, &f);
+
+    for(std::string i : fastest)
+    {
+        std::cout << i + " ";
+    }
+
     return 0;
 }
