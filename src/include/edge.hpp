@@ -7,15 +7,15 @@ class Node; //...dit (a.k.a. Forward declaration) werkt ook, maar alleen als ik 
 
 class Edge
 {
-    private:
+    protected:
         // Node from; Dit kan dus niet, probeer maar!
         Node* from;
         Node* to;
         float weight;
 
-    public:    
+    public:
         Edge(Node* from, Node* to, float weight);
         Node* getFrom() const;
         Node* getTo() const;
-        float getWeight() const;
+        virtual float getWeight() const;
 };
