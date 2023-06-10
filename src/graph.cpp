@@ -53,6 +53,24 @@ std::vector<std::string> Graph::dijkstraAlgorithm(Node* start, Node* end)
     std::map<Node*, unsigned int> dist;
     std::map<Node*, Node*> prev;
 
+    // Code by Joris
+    Node* startNode = nullptr;
+    Node* endNode = nullptr;
+    for(Node* node : this->nodes){
+        if(start->getName() == node->getName()){
+        startNode = node;
+        } else if(end->getName() == node->getName()){
+        endNode = node;
+        }
+    }
+    // If one of them is still a nullptr:
+    if(!startNode || !endNode){
+        std::cout << "You gave a starting or endpoint that does not exist." << std::endl;
+        exit(1); // Exit program with code 1
+    }
+    start = startNode;
+    end = endNode;
+
     for(auto& node : nodes)
     {
         dist[node] = INT_MAX;

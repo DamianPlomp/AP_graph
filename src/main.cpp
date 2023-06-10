@@ -5,6 +5,13 @@
 
 int main()
 {
+    // Graphs are hardcoded here
+    // With this example you can't really see that the plane and train actually go faster, but if you wish
+    // to get this shown, simple implement the getWeight function somewhere.
+
+
+    // Graph for car
+    
     Node a = Node("a"); Node b = Node("b"); Node c = Node("c"); Node d = Node("d"); Node e = Node("e"); Node f = Node("f");
 
     Edge a1 = Edge(&a, &b, 4); Edge a2 = Edge(&a, &c, 3);    
@@ -20,9 +27,6 @@ int main()
     );
 
 
-
-    std::cout << carGraph << std::endl;
-
     std::priority_queue<Node*, std::vector<Node*>, NodeGreaterThan> pq;
     pq.push(&a);
     pq.push(&b);
@@ -31,19 +35,14 @@ int main()
     pq.push(&e);
     pq.push(&f);
 
-    std::cout << (*pq.top()) << std::endl;    
     pq.pop();
-    std::cout << (*pq.top()) << std::endl; 
     pq.pop();
-    std::cout << (*pq.top()) << std::endl; 
     pq.pop();
-    std::cout << (*pq.top()) << std::endl; 
     pq.pop();
-    std::cout << (*pq.top()) << std::endl; 
     pq.pop();
-    std::cout << (*pq.top()) << std::endl; 
 
 // ---------------------------------------------------------------------------------------------
+// Graph for train
 
     Node g = Node("g"); Node h = Node("h"); Node i = Node("i"); Node j = Node("j"); Node k = Node("k"); Node l = Node("l");
 
@@ -61,9 +60,6 @@ int main()
     );
 
 
-
-    std::cout << trainGraph << std::endl;
-
     std::priority_queue<Node*, std::vector<Node*>, NodeGreaterThan> trainVec;
     trainVec.push(&g);
     trainVec.push(&h);
@@ -72,19 +68,14 @@ int main()
     trainVec.push(&k);
     trainVec.push(&l);
 
-    std::cout << (*trainVec.top()) << std::endl;    
     trainVec.pop();
-    std::cout << (*trainVec.top()) << std::endl; 
     trainVec.pop();
-    std::cout << (*trainVec.top()) << std::endl; 
     trainVec.pop();
-    std::cout << (*trainVec.top()) << std::endl; 
     trainVec.pop();
-    std::cout << (*trainVec.top()) << std::endl; 
     trainVec.pop();
-    std::cout << (*trainVec.top()) << std::endl;
 
 // -------------------------------------------------------
+// Graph for plane
 
     Node m = Node("m"); Node n = Node("n"); Node o = Node("o"); Node p = Node("p"); Node q = Node("q"); Node r = Node("r");
     Node s = Node("s"); Node t = Node("t");
@@ -104,9 +95,6 @@ int main()
     );
 
 
-
-    std::cout << planeGraph << std::endl;
-
     std::priority_queue<Node*, std::vector<Node*>, NodeGreaterThan> planeVec;
     planeVec.push(&m);
     planeVec.push(&n);
@@ -117,57 +105,78 @@ int main()
     planeVec.push(&s);
     planeVec.push(&t);
 
+    planeVec.pop();
+    planeVec.pop();
+    planeVec.pop();
+    planeVec.pop();
+    planeVec.pop();
+    planeVec.pop();
+    planeVec.pop();
 
-    std::cout << (*planeVec.top()) << std::endl;    
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl;
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-    planeVec.pop();
-    std::cout << (*planeVec.top()) << std::endl; 
-
-    std::cout << "Welcome to the knockoff version of google maps" << std::endl;
+    std::cout << "Welcome to the knockoff version of Google Maps" << std::endl;
 
     int x;
 
-    std::cout << "Would you like to travel by car, train or plane? Choose by typing 1, 2 or 3" << std::endl;
+    std::cout << "Would you like to travel by car, train, or plane? Choose by typing 1, 2, or 3" << std::endl;
 
     std::cin >> x;
-
-    if(x=1)
+    if(x==1)
     {
-        std::cout << "You chose to travel by car, the fastest route for this would be: ";
-        std::vector<std::string> fastestCarRoute = carGraph.dijkstraAlgorithm(&a, &f);
+        std::cout << "Please enter a starting point (a, b, c, d, e, f): " << std::endl;
+        std::string startingPoint;
+        std::cin >> startingPoint;
+        Node first = Node(startingPoint);
+
+        std::cout << "Please enter an ending point (a, b, c, d, e, f): " << std::endl;
+        std::string endingPoint;
+        std::cin >> endingPoint;
+        Node second = Node(endingPoint);
+
+        std::cout << "You chose to travel by car, the fastest route for this would be: " << std::endl;
+
+        std::vector<std::string> fastestCarRoute = carGraph.dijkstraAlgorithm(&first, &second);
 
         for(std::string i : fastestCarRoute)
         {
             std::cout << i + " ";
         }
     }
-    if(x=2)
+    else if(x==2)
     {
-        std::cout << "You chose to travel by train, the fastest route for this would be: ";
+        std::cout << "Please enter a starting point (g, h, i, j, k, l):" << std::endl;
+        std::string startingPoint;
+        std::cin >> startingPoint;
+        Node first = Node(startingPoint);
 
-        std::vector<std::string> fastestTrainRoute = trainGraph.dijkstraAlgorithm(&g, &l);
+        std::cout << "Please enter an ending point (g, h, i, j, k, l): " << std::endl;
+        std::string endingPoint;
+        std::cin >> endingPoint;
+        Node second = Node(endingPoint);
+
+        std::cout << "You chose to travel by train, the fastest route for this would be: " << std::endl;
+
+        std::vector<std::string> fastestTrainRoute = trainGraph.dijkstraAlgorithm(&first, &second);
 
         for(std::string n : fastestTrainRoute)
         {
             std::cout << n + " ";
         }
     }
-    if(x=3)
+    else if(x==3)
     {
-        std::cout << "You chose to travel by plane, the fastest route for this would be: ";
+        std::cout << "Please enter a starting point (m, n, o, p, q, r, s, t): " << std::endl;
+        std::string startingPoint;
+        std::cin >> startingPoint;
+        Node first = Node(startingPoint);
 
-        std::vector<std::string> fastestPlaneRoute = planeGraph.dijkstraAlgorithm(&m, &r);
+        std::cout << "Please enter an ending point (m, n, o, p, q, r, s, t): " << std::endl;
+        std::string endingPoint;
+        std::cin >> endingPoint;
+        Node second = Node(endingPoint);
+
+        std::cout << "You chose to travel by plane, the fastest route for this would be: " << std::endl;
+
+        std::vector<std::string> fastestPlaneRoute = planeGraph.dijkstraAlgorithm(&first, &second);
 
         for(std::string i : fastestPlaneRoute)
         {

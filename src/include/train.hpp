@@ -10,6 +10,7 @@ class Node; //...dit (a.k.a. Forward declaration) werkt ook, maar alleen als ik 
 class Train : public Edge
 {
     public:
+        // Constructor for a train
         Train(Node* from, Node* to, float weight);
 
 };

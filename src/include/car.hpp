@@ -9,6 +9,7 @@ class Node; //...dit (a.k.a. Forward declaration) werkt ook, maar alleen als ik 
 
 class Car : public Edge
 {
+    // Constructor for Car
     public:
         Car(Node* from, Node* to, float weight);
 
