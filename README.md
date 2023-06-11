@@ -1,8 +1,10 @@
 # AP_graph
-Mogelijke implementatie van een graaf, gebruik makende van de concepten die we tijdens AP hebben geleerd:
-- Inheritance
-- Interfaces
-- Pointers
-- Overloading
+In dit programma heb ik het dijkstra algoritme geïmplementeerd. Dit algorotime
+zoekt de snelst mogelijke oplossing om van punt A naar B te gaan. 
 
-(Daarnaast wordt ook "forward declaration" toegepast, zie node.hpp)
+In dit project heb ik drie grafen gehardcode, die elk een verschillende weg voorstellen.
+Zo is de carGraph een normale weg, trainGraph een treinspoor en planeGraph een luchtweg. 
+
+Om toch het verschil te zien qua snelheden tussen de verschillende transport mogelijkheden heeft elke optie, dus
+auto, trein en vliegtuig, een verschillende weightfactor, wat eigenlijk inhoud dat ze de ene sneller gaat
+dan de andere.
