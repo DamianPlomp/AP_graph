@@ -8,3 +8,5 @@ Zo is de carGraph een normale weg, trainGraph een treinspoor en planeGraph een l
 Om toch het verschil te zien qua snelheden tussen de verschillende transport mogelijkheden heeft elke optie, dus
 auto, trein en vliegtuig, een verschillende weightfactor, wat eigenlijk inhoud dat ze de ene sneller gaat
 dan de andere.
+
+De user kan kiezen of die met de auto, trein of vliegtuig wil reizen en waarvandaan tot waar.
